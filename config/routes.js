@@ -44,6 +44,7 @@ module.exports.routes = {
   '/location' :{
    controller : 'home',
    action     : 'location'
+<<<<<<< HEAD
 
   },
   '/city' :{
@@ -64,7 +65,9 @@ module.exports.routes = {
     controller : 'adddata',
     action     : 'createcity'
   },
-
+=======
+  }
+>>>>>>> changes
 
   /***************************************************************************
   *                                                                          *
