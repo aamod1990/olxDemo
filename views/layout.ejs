@@ -8,9 +8,17 @@
 <link rel="stylesheet" href="/styles/importer.css">
 <link href="/styles/customcss/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/styles/customcss/easydropdown.css"/>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/jquery-1.10.2.js"/>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
 <link rel="stylesheet" type="text/css" href="/styles/customcss/table.css"/>
-
-    <!--STYLES END-->
+<link rel="stylesheet" type="text/css" href="/styles/customcss/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/customcss/css/bootstrap.css"/>
+ <!--STYLES END-->
+<!--SCRIPT Start-->
+<script src="/js/dependencies/sails.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+   <!--script End-->
   </head>
 
   <body>
@@ -21,9 +29,10 @@
     <!-- Include the view file for the current controller/route -->
     <div ui-view></div>
     <%-body %>
-    <!--header start-->
+    <!--header end-->
+     <!--footer start-->
     <%- partial('footer')%>
-    <!--header end-->            
+    <!--footer end-->            
     </section>
  
 
@@ -76,8 +85,8 @@
 
     -->
 
-    <!--SCRIPTS-->
-    <script src="/js/dependencies/sails.io.js"></script>
+
+    
     <!--SCRIPTS END-->
   </body>
 </html>

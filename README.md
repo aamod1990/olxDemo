@@ -1,4 +1,3 @@
-olxDemo
-=======
+# olxDemo
 
-largest market place
+a [Sails](http://sailsjs.org) application

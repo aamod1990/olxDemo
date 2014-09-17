@@ -10,3 +10,12 @@ table {
 th {
     height: 50px;
 }
+   table.names tr:nth-child(even) {
+    background-color: #f1f1c1;
+}
+   table.names tr:nth-child(odd) {
+   background-color:#ffffff;
+   }
+   table.names th	{
+    background-color: #c1c1c1;
+}
