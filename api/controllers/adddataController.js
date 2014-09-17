@@ -5,5 +5,8 @@ module.exports = {
   createLocation : function(req ,res){
   	return res.view({});
   },
+  createCity : function(req ,res){
+  	return res.view({});
+  },
   
 };

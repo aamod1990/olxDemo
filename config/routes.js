@@ -44,6 +44,12 @@ module.exports.routes = {
   '/location' :{
    controller : 'home',
    action     : 'location'
+
+  },
+  '/city' :{
+   controller : 'home',
+   action     : 'city'
+
   },
   '/createstate' :{
     controller : 'adddata',
@@ -52,7 +58,12 @@ module.exports.routes = {
   '/createLocation' :{
     controller : 'adddata',
     action     :  'createLocation'
-  }
+  },
+  
+  '/createCity' :{
+    controller : 'adddata',
+    action     : 'createcity'
+  },
 
 
   /***************************************************************************
