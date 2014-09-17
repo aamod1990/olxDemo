@@ -45,59 +45,24 @@
 </div>
 </div>
 <div id="createstate_dialog">
- <form action="/createloc" method="post"  onsubmit="return(validate())">
+ <form action="/createloc" method="post" name="createloc"  onsubmit="return(validate())">
   <fieldset>
    <span for="name">Enter State</span>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
    <input type="text" name="state"  id="state" class="text ui-widget-content ui-corner-all"><br>
    <span for="name">Select City</span><br>
     <select>
-        <option value="indore">indore</option>
-        <option value="bhopal">bhopal</option>
-        <option value="jablpur">jablpur</option>
-        <option value="shahdol">shahdol</option>
-</select> 
-<br>
+      <option value="Indore">Indore</option>
+      <option value="Bhopal">Bhopal</option>
+      <option value="Jablpur">Jablpur</option>
+      <option value="Shahdol">Shahdol</option>
+</select> <br>
    <span for="name">Select Location</span><br>
    <select>
-        <option value="vijay_Nagar">vijay_Nagar</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-  </select> 
-  <br>
-=======
->>>>>>> 97530eb460e1e606f38eba667d7b0dd1f1428a2e
-   <input type="text" name="state"  id="state" class="text ui-widget-content ui-corner-all" required><br>
-   <span for="name">Enter City</span>
-   <input type="text" name="city"  id="city" class="text ui-widget-content ui-corner-all" required><br>
-   <span for="name">Enter Location</span>
-   <input type="text" name="location"  id="location" class="text ui-widget-content ui-corner-all" required>
-<<<<<<< HEAD
-=======
-   <input type="text" name="state"  id="state" class="text ui-widget-content ui-corner-all"><br>
-   <span for="name">Select City</span><br>
-    <select>
-        <option value="indore">indore</option>
-        <option value="bhopal">bhopal</option>
-        <option value="jablpur">jablpur</option>
-        <option value="shahdol">shahdol</option>
-</select> 
-<br>
-   <span for="name">Select Location</span><br>
-   <select>
-        <option value="vijay_Nagar">vijay_Nagar</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-  </select> 
-  <br>
->>>>>>> changes
-=======
->>>>>>> 1ad1e42c3e8b65cd1c3c9f95e9b7f4282959e7a6
->>>>>>> 97530eb460e1e606f38eba667d7b0dd1f1428a2e
+      <option value="VijayNagar">VijayNagar</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+ </select> <br>
    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">submit</span></button>
   </fieldset>
  </form>
@@ -124,14 +89,24 @@
 </script>
 <script>
 function validate () {
-  if (document.Registration.uname.value=="") {
-       alert("Please Enter Name Fast");
-       document.Registration.uname.focus();
+  if (document.createloc.state.value=="") {
+       alert("Please Enter State Fast");
+       document.createloc.state.focus();
        return false;
   };
-  return=true;
+   if (document.createloc.city.value=="") {
+       alert("Please Enter City Fast");
+       document.createloc.state.focus();
+       return false;
+  };
+   if (document.createloc.location.value=="") {
+       alert("Please Enter Location Fast");
+       document.createloc.state.focus();
+       return false;
+  };
+ return(true);
   }
-<script>
+</script>
 
 <!-- Container-box-End -->
 </body>
