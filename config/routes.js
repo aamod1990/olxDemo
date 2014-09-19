@@ -44,7 +44,11 @@ module.exports.routes = {
   '/location' :{
    controller : 'home',
    action     : 'location'
-  }
+  },
+  '/city' :{
+    controller : 'home',
+    action     : 'city'
+  },
 
 
   /***************************************************************************

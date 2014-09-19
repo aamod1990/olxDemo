@@ -8,26 +8,16 @@
      <th>State</th>
      <th>Action</th>
     </tr>
+    <% for(var i=0; i<allstate.length;i++){ %>
+
     <tr class="success">
-     <td>1</td>
-     <td>mp</td>
-     <td><span><a href="#">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
+     <td><%= i+1 %></td>
+     <td><%= allstate[i].state %></td>
+     <td><span><a href="javascript:void(0);" onclick="edit('<%= allstate[i].state %>','<%= allstate[i].id %>')">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="?deletestatename=<%= allstate[i].id %>">Delete</a></span></td>
     </tr>
-    <tr class="warning">
-     <td>2</td>
-     <td>up</td>
-     <td><span><a href="#">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
-    </tr>
-    <tr class="danger">
-     <td>3</td>
-     <td>cg</td>
-     <td><span><a href="#">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
-    </tr>
-    <tr class="info">
-     <td>4</td>
-     <td>ut</td>
-     <td><span><a href="#">Edit</a></span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
-    </tr>
+    <% } %>
+
+
   </table>
   </div>
   <div class="clear"></div>
@@ -36,6 +26,7 @@
 </div>
 </div>
 </div>
+<!-- New_state_dailog box start -->
 <div id="createstate_dialog">
  <form>
   <fieldset>
@@ -45,6 +36,21 @@
   </fieldset>
  </form>
 </div>
+<!-- New_state_dailog box end -->
+<!-- edit_state_dailog box start -->
+
+<div id="editstate_dialog">
+ <form>
+  <fieldset>
+   <label for="name">Enter State</label>
+   <input type="text" name="editstatename"  id="editstate" required>
+   <input type="hidden" name="editstateid"  id="editstateid"  required>
+   <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">update</span></button>
+  </fieldset>
+ </form>
+</div>
+
+<!-- edit_state_dailog box end -->
 
 <script>
  $( "#createstate_dialog" ).dialog({
@@ -65,4 +71,24 @@
     $("#createstate_dialog").dialog('open');
    });   
   });
+</script>
+
+<script>
+$( "#editstate_dialog" ).dialog({
+   autoOpen: false,
+   modal : true,
+   show: {
+   effect: "blind",
+   duration: 1000
+  },
+   hide: {
+   effect: "explode",
+   duration: 1000
+  }
+ });
+function edit(state,id){
+     $("#editstate_dialog").dialog('open');
+      $("#editstate").val(state);
+      $("#editstateid").val(id);
+  }
 </script>

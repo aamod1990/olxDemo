@@ -10,40 +10,30 @@
     <th>City</th>
     <th>Action</th>
   </tr>
+  <% for(var i=0; i<myArrayCity.length;i++) { %>
   <tr class="success">
-    <td>101</td>
-    <td>MadhyPradesh</td>
-    <td>Indore</td>
+    <td><%= i+1 %></td>
+    <td><%= myArrayCity[i].state %></td>
+    <td><%= myArrayCity[i].city %></td>
     <td><span><a href="#">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
   </tr>
-  <tr  class="warning">
-    <td>102</td>
-    <td>Bihar</td>
-    <td>Patna</td>
-    <td><span><a href="#">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
-  </tr>
-  <tr class="danger">
-    <td>103</td>
-    <td>Rajsthan</td>
-    <td>jaiput</td>
-    <td><span><a href="#">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
-  </tr>
-  <tr class="info">
-   <td>104</td>
-    <td>Maharasta</td>
-    <td>Pune</td>
-    <td><span><a href="#">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">Delete</a></span></td>
-</tr>
+  <% } %>
 </table>
 </div>
 <div class="clear"></div>
 </div>
 </div>
 <div id="createcity_dialog">
- <form action="/createcity" method="post"  onsubmit="return(validate())">
+ <form>
   <fieldset>
-   <span for="name">Enter State</span>
-   <input type="text" name="state"  id="state" class="text ui-widget-content ui-corner-all" required><br>
+
+   <span for="name">Enter State</span><br>
+   <select name="state">
+      <option value="">select_state</option>
+      <% for(var i=0; i<myArrayCity.length;i++) { %>
+      <option value="<%= myArrayCity[i].state %>"><%= myArrayCity[i].state %></option>
+      <% } %>
+      </select><br>
    <span for="name">Enter City</span>
    <input type="text" name="city"  id="city" class="text ui-widget-content ui-corner-all" required><br>
    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">submit</span></button>
