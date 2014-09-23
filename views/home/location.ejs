@@ -45,24 +45,26 @@
 </div>
 </div>
 <div id="createstate_dialog">
- <form action="/createloc" method="post" name="createloc"  onsubmit="return(validate())">
+ <form  name="createloc"  onsubmit="return(validate())">
   <fieldset>
-   <span for="name">Enter State</span>
-   <input type="text" name="state"  id="state" class="text ui-widget-content ui-corner-all"><br>
-   <span for="name">Select City</span><br>
-    <select>
-      <option value="Indore">Indore</option>
+   <span for="state">Select State</span><br>
+    <select name="state">
+      <option value="">Select_State</option>
+      <option value="mp">mp</option>
       <option value="Bhopal">Bhopal</option>
       <option value="Jablpur">Jablpur</option>
       <option value="Shahdol">Shahdol</option>
 </select> <br>
-   <span for="name">Select Location</span><br>
-   <select>
+   <span for="city">Select City</span><br>
+   <select name="city">
+      <option value="">Select_City</option>
       <option value="VijayNagar">VijayNagar</option>
       <option value="saab">Saab</option>
       <option value="mercedes">Mercedes</option>
       <option value="audi">Audi</option>
  </select> <br>
+ <span for="name">Enter Location</span>
+   <input type="text" name="location"  id="location" class="text ui-widget-content ui-corner-all"><br>
    <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">submit</span></button>
   </fieldset>
  </form>
