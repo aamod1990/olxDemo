@@ -9,16 +9,15 @@
      <th>Action</th>
     </tr>
     <% for(var i=0; i<allstate.length;i++){ %>
-
-    <tr class="success">
+     <tr class="success">
      <td><%= i+1 %></td>
      <td><%= allstate[i].state %></td>
-     <td><span><a href="javascript:void(0);" onclick="edit('<%= allstate[i].state %>','<%= allstate[i].id %>')">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="?deletestatename=<%= allstate[i].id %>">Delete</a></span></td>
+     <td><span><a href="javascript:void(0);" onclick="edit('<%= allstate[i].state %>','<%= allstate[i].id %>')">Edit</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+     <a href="/deletestate?deletestateid=<%= allstate[i].id %>">Delete</a></span></td>
     </tr>
     <% } %>
-
-
   </table>
+  <%- req.flash('message') %>
   </div>
   <div class="clear"></div>
  </div>
@@ -28,7 +27,7 @@
 </div>
 <!-- New_state_dailog box start -->
 <div id="createstate_dialog">
- <form>
+ <form action="/createstate" method="post">
   <fieldset>
    <label for="name">Enter State</label>
    <input type="text" name="state"  id="state" class="text ui-widget-content ui-corner-all" required>
@@ -40,7 +39,7 @@
 <!-- edit_state_dailog box start -->
 
 <div id="editstate_dialog">
- <form>
+ <form action ="/editstate" method="post">
   <fieldset>
    <label for="name">Enter State</label>
    <input type="text" name="editstatename"  id="editstate" required>
@@ -49,9 +48,7 @@
   </fieldset>
  </form>
 </div>
-
 <!-- edit_state_dailog box end -->
-
 <script>
  $( "#createstate_dialog" ).dialog({
    autoOpen: false,
@@ -91,4 +88,4 @@ function edit(state,id){
       $("#editstate").val(state);
       $("#editstateid").val(id);
   }
-</script>
+  </script>
