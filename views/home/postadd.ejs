@@ -1,0 +1,84 @@
+<div class="container">
+  <form action="/savepage" method="post" enctype="multipart/form-data">
+    <div class="border-box">
+      <div class="profile-detail">
+        <font color="blue"><h4>Post a Free Classified Ad: <h4></font>
+        <div class="clear"></div>
+      </div>
+      <p>Photos:</p>
+      <fieldset>
+        <label class="control-label">Select Image:</label>
+        <div class="clearfix upld-pic-block">        
+          <div class="controls ad-media top-row"> <!--pic01-->
+            <div class="media-box media-lrg">
+              <img class="img-responsive" src="/images/no-image.jpg"  alt="" id="imgpic" tgt="#pic" width="60px" height="90px">
+            </div> <!--media-box-->
+          </div> <!--ad-media-->
+          <div class="form-group">                
+            <input type="file" name="pic" id="pic" tgt="#imgpic" style="display:none" size = '50'>
+          </div> <!--form-group-->
+        </div> <!--upld-pic-block-->
+      
+      </fieldset>
+      <p><span>
+        Choosen Categary : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select a categary
+      </span></p>
+      <label class="radio-inline">
+        <input type="radio" name="categary" id="inlineRadio1" value="Mobile and Tablet"> Mobile and Tablet
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="categary" id="inlineRadio2" value="Electronics and Computer"> Electronics and Computer
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="categary" id="inlineRadio3" value="Vehicles"> Vehicles
+      </label>
+      <div class="row">
+        <div class="col-sm-7">
+          <p>Add Title:*</p>
+          <input type="text" class="form-control" placeholder="Adds title" name="addtitle" required value="">
+        <p>Describe what makes your ad unique: *</p>
+        <textarea class="form- control" rows="3" value="descriptions" name="describe" required></textarea>
+      </div>
+    </div>
+    <h3>Seller Information:</h3>
+    <div class="row">
+      <div class="col-sm-7">
+        <p>Contact Name:*</p> <input type="text" class="form-control" placeholder="Name" value="" name="sellarname"required>
+        <div class="col-sm-13">
+          <p>Your Email Id:*</p>
+          <input type="email" class="form-control" placeholder="email" name="email" value=""required>
+          <p>Your Phone No:*</p>
+          <input type="text"  name="mobno" class="form-control" placeholder="0XXXXXXXXXX" value="" required>
+          <p>State:*</p>
+          <select name = "state" class="form-control input-sm">
+            <option value=none>Select a state</option>
+            <option value ="aasam" >Aasam</option>
+            <option value ="nagaland" >Nagaland</option>
+            <option value="goa" >Goa</option>
+            <option value=hp>HP</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg active">Post your Add</button><br>
+  </form>
+</div>
+<script type ="text/javascript">
+  jQuery(document).ready(function(){              
+    $(".upld-pic-block img").click(function(){
+      $($(this).attr('tgt')).trigger('click');
+    });
+    $(".upld-pic-block input[type='file']").change(function(){
+      readURL(this,$(this).attr('tgt'));
+    });
+  });
+  function readURL(input, target) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(target).attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    } 
+  }
+</script>

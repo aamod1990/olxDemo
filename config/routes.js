@@ -32,23 +32,32 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
+'/': {
+  view: 'homepage'
+},
 
-  '/state' :{
+'/postadd' :{
+   controller : 'home',
+   action     : 'postadd'
+},
+
+'post /savepage' :{
+   controller : 'home',
+   action     : 'savepage'
+},
+'/state' :{
    controller : 'home',
    action     : 'state'
-  },
+},
   
-  '/location' :{
-   controller : 'home',
-   action     : 'location'
-  },
-  '/city' :{
-    controller : 'home',
-    action     : 'city'
-  },
+'/location' :{
+ controller : 'home',
+ action     : 'location'
+},
+'/city' :{
+  controller : 'home',
+  action     : 'city'
+},
 
 
   /***************************************************************************
