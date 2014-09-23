@@ -3,96 +3,7 @@ module.exports = {
   state : function(req ,res){
     //var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     var state = req.param('state');
-    var editstatename = req.param('editstatename');
-    var editstateid = req.param('editstateid');
-    var deletestatename = req.param('deletestatename');
-    console.log("delete id:---"+deletestatename);
-    if (state)
-    {
-      console.log(state);
-      State.create({state : state},function(err ,state){
-        if(err)
-        { 
-             throw err;
-             console.log(err);
-          
-        }
-          else
-          {
-             State.find({},function(err,allstate){
-                if(err)
-                {
-                  throw err;
-                  console.log(err);
-                }
-                else
-                {
-                  console.log(allstate);
-                  res.view({allstate : allstate});
-                }
-              });
-          }
-
-        });
-      }
-  else if (editstatename)
-  {
-    console.log(editstatename);
-    State.update({id : editstateid},{state : editstatename})
-     .exec(function(err,updatedata){
-        if (err)
-        {
-        throw err;
-        console.log(err);
-        }
-        else
-        {
-          State.find({},function(err,allstate){
-              if (err)
-              {
-                  throw err;
-                  console.log(err);
-              }
-              else
-              {
-                console.log("value edit state" +allstate);
-                res.view({allstate : allstate});
-              }
-
-            });
-        }
-    });
-  }
-
-  else if (deletestatename){
-        console.log(deletestatename);
-    State.destroy({id: deletestatename})
-      .exec(function(err,deletstate){  
-      if (err)
-      {
-         throw err;
-         console.log(err);
-     }
-     else{
-        State.find({},function(err,allstate){
-             if (err)
-            {
-                 throw err;
-                console.log(err);
-            }
-            else
-            {
-              res.view({allstate : allstate});
-            }
-
-        });
-
-    }
-    });
-  }
-    else{
-
-         State.find({},function(err,allstate){
+      State.find({},function(err,allstate){
             if (err)
             {
                 throw err;
@@ -105,141 +16,96 @@ module.exports = {
             }
 
           });
-      }
   },
-
-  location : function(req ,res){
-    return res.view({});
-
-  },
-  city : function(req ,res){
-    var myArrayCity = new Array();
+  createstate : function(req,res){
     var state = req.param('state');
-    var city  = req.param('city');
-    if (state && city)
+    State.findOne({state : state},function(err,duplicatestate){
+      if (duplicatestate){
+        req.flash('message','already exits');
+        res.redirect('back');
+      }
+      else
       {
-        console.log("state:--"+state+"city:--"+city);
-          State.findOne({state : state},function(err,allstate){
-                  if (err)
-                  {
-                      throw err;
-                      console.log(err);
-                  }
-                  else
-                  {    
-                        City.create({stateid : allstate.id,city : city})
-                       .exec(function(err,city)
-                       {
-                           if (err)
-                            {
-                             throw err;
-                             console.log(err);
-                            }
-                           else
-                           {
-                             State.find({},function(err ,state){
-                                  if (err)
-                                  {
-                                   throw err;
-                                   console.log(err);
-                                  }
-                                  else
-                                  {
-                                    var i = -1;
-                                    function nextcity()
-                                    {
-                                      i++;
-                                      if (state.length > i)
-                                      {   
-                                          City.findOne({stateid : state[i].id},function(err ,city){
-                                            if (city)
-                                            {
-                                            if (err)
-                                            {
-                                             throw err;
-                                             console.log(err);
-                                            }
-                                            else
-                                            {
-                                              state[i].city = city.city;
-                                              myArrayCity.push(state[i]);
-                                              nextcity();
-                                            }
-                                          }
-                                          else
-                                          {
-                                           myArrayCity.push(state[i]);
-                                           console.log("value of"+myArrayCity[0]);
-                                           nextcity();
-                                           
-                                          }
-                                          });
-                                      }
-                                      else
-                                      {
-                                        res.view({myArrayCity : myArrayCity})
-                                      }
-                                    }
-                                    nextcity();
-                                  }
-                                });
-                           }
-                        })
-                      
-                  }
-             });
-        }
-    
-
-    else
-    {  
-      State.find({},function(err ,state){
+        State.create({state : state},function(err,state){
+          if (err){
+            throw err;
+          }
+          else
+          {
+            res.redirect('back');
+          }
+        })
+      }
+    })
+  },
+  editstate : function(req,res){
+    var state = req.param('editstatename');
+    var editstateid = req.param('editstateid');
+    State.findOne({state : state},function(err,duplicatestate){
+      if (duplicatestate)
+      {
+        req.flash('message','already exits');
+        res.redirect('back');
+      }
+      else
+      {
+        State.update({id : editstateid},{state : state})
+       .exec(function(err,updatedata){
         if (err)
         {
-         throw err;
-         console.log(err);
+        throw err;
+        console.log(err);
         }
         else
         {
-          var i = -1;
-          function nextcity()
-          {
-            i++;
-            if (state.length > i)
-            {   
-                City.findOne({stateid : state[i].id},function(err ,city){
-                  if (city)
-                  {
-                  if (err)
-                  {
-                   throw err;
-                   console.log(err);
-                  }
-                  else
-                  {
-                    state[i].city = city.city;
-                    myArrayCity.push(state[i]);
-                    nextcity();
-                  }
-                }
-                else
-                {
-                 myArrayCity.push(state[i]);
-                 console.log("value of"+myArrayCity[0]);
-                 nextcity();
-                 
-                }
-                });
-            }
-            else
-            {
-              res.view({myArrayCity : myArrayCity})
-            }
-          }
-          nextcity();
+          res.redirect('back');
         }
       });
-    }
+      }
+    });
   },
+  deletestate : function(req ,res){
+   var deletestateid = req.param('deletestateid');
+    State.destroy({id: deletestateid})
+      .exec(function(err,deletstate){
+      if (err)
+      {
+       console.log(err);
+      }
+      else
+      {
+        res.redirect('back');
+      }  
+      })
+  },
+
+  location : function(req ,res){
+    var state = req.param('state');
+    var city  = req.param('city');
+    var location = req.param('location');
+    console.log(state+"city:--"+city+"location:-"+location);
+    if (state && city && location){
+      console.log("somethin enter");
+    }
+    else
+    // {
+    //   State.find({},function(err ,state){
+    //     if (err)
+    //     {
+    //      throw err;
+    //      console.log(err);
+    //     }
+    //     else
+    //     {
+    //      var i =-1;
+    //      function next()
+    //      {
+    //       if (true) {};
+    //      }
+    //     }
+    //   });
+    res.view({});
+  },
+  
   _config: {}
 };

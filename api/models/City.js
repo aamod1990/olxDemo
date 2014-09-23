@@ -8,6 +8,10 @@ module.exports = {
 			type: 'string',
 			required: true,
 			unique: true
+		},
+		state: {
+			type: 'string',
+			required: true,
 		}
 	}
 }
