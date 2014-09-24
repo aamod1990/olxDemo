@@ -77,6 +77,10 @@ module.exports.routes = {
     controller : 'city',
     action     : 'city'
   },
+  '/categary' :{
+    controller : 'home',
+    action     : 'categary'
+  },
 
 
 

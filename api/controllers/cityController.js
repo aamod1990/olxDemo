@@ -23,6 +23,7 @@ module.exports = {
                   }
                   else if(city)
                   {
+                    console.log("sachin........."+city);
                     console.log(state[i], city.city);
                     state[i].city = city.city;
                     state[i].statename = city.state;
