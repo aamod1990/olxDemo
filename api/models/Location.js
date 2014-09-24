@@ -1,8 +1,12 @@
 module.exports = {
 	attributes: {		
-		city: {
+		location : {
 			type: 'string',
 			unique: true
+		},
+		city: {
+			collection: 'City',
+			via : 'id'
 		},
 		state: {
 			collection: 'State',

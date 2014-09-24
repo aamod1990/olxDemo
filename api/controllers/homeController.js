@@ -42,48 +42,7 @@ module.exports = {
               
       }
     });
-
-
-
-
-
-
-
-
-
-
-
-//         var th = this;
-//var imagepath = req.param('imagepath');
-     // console.log(req.files);
-             
-     //                  fs.readFile(req.files.pic.path, function (err, data) {
-     //            if(err){
-     //           console.log(err);
-     //           return th.view("postdata", {alert : "alert-message error", message : "Image Uploading Error", activePage: "postadd"});
-     //            }
-     //             var date = new Date(); // some mock date
-     //             var milliseconds = date.getTime();
-     //             var photopath = "/uploaded_photo/" + milliseconds + ".jpg" ;
-     //             var newPath = __dirname +"../../assets/" + photopath;
-     //             var newPath = path.resolve(newPath);
-     //           fs.writeFile(newPath, data, function (err) {
-     //                if(err){
-     //                 console.log(err);
-     //                return  th.view("home/postadd", {alert : "alert-message warning", message : "Image Not Uploaded", activePage: "postadd"});
-     //               } else {
-     //               postdata.imagepath = "http://"+th.req.headers.host + photopath;
-     //               postdata.create(postdata)
-     //                  return   th.view("home/postadd", {alert : "alert-message success", message : "Item Successfully saved.", activePage: "postadd"});
-     //              }
-     //              console.log(req.files.pic.path);
-     //           }); 
-     //      });  
-        
-                     
-       
-        
- },
+  },
 
 
 
@@ -193,6 +152,7 @@ module.exports = {
     //   });
     res.view({});
   },
+  
   
   _config: {}
 };

@@ -1,77 +1,60 @@
 module.exports = {
- city : function(req ,res){
-    var myArrayCity = new Array();
-    State.find({},function(err ,state){
-        if (err)
-        {
-         throw err;
-         console.log(err);
-        }
-        else
-        {
-          var i = -1;
-          function nextcity()
-          {
-            i++;
-            if (state.length > i)
-            {   
-                City.findOne({stateid : state[i].id},function(err ,city){
-                  if (err)
-                  {
-                   throw err;
-                   console.log(err);
-                  }
-                  else if(city)
-                  {
-                    console.log(state[i], city.city);
-                    state[i].city = city.city;
-                    state[i].statename = city.state;
-                    console.log(state[i]);
-                    myArrayCity.push(state[i]);
-                    nextcity();
-                    
-                  } 
-                  else {
-                    myArrayCity.push(state[i]);
-                    nextcity();
-
-                  }
-                
-                });
-            }
-            else
-            {
-              res.view('city/city',{myArrayCity : myArrayCity});
-            }
-          }
-          nextcity();
-        }
+  city : function(req ,res){
+      City.find().populate('state').exec(function(err, cities){
+        State.find({}, function(err, states){
+          res.view({cities : cities, states : states});
+        });
       });
   },
-  createcity : function(req,res){
-    var state1 = req.param('state');
-    var city  = req.param('city');
-    State.findOne({state : state1},function(err,state){
-      if (err){
-        throw err;
-       console.log(err);
+
+  createcity : function(req, res){
+    City.find({city : req.body.city}).populate('state', {where: { id: req.body.state }}).exec(function(err, cities){
+      if(err){
+        req.flash("message", "db Error");
+        res.redirect('back');
+      }
+      else if(cities.length>0){
+        req.flash("message", "city already exists");
+        res.redirect('back');
       }
       else{
-           City.create({stateid : state.id,city :city,state : state1})
-           .exec(function(err,city)
-           {
-           if (err)
-           {
-              throw err;
-              console.log(err);
-            }
-            else
-            {
+        City.create({city : req.body.city, state : req.body.state}, function(err, city){
+          if(err)
+              req.flash('message', 'error creatting city');
           res.redirect('back');
-            }
-          });
-        }
-     })
+        }) 
+      }
+    });
   },
-  _config: {}
+
+  editcity : function(req, res){
+    City.find({city : req.body.city}).populate('state', {where: { id: req.body.state }}).exec(function(err, cities){
+      if(err){
+        req.flash("message", "db Error");
+        res.redirect('back');
+      }
+      else if(cities.length>0){
+        req.flash("message", "city already exists");
+        res.redirect('back');
+      }
+      else{
+        City.update({id : req.body.cityid}, {city : req.body.city}, function(err, city){
+          if(err)
+              req.flash('message', 'error Updating city');
+          res.redirect('back');
+        }) 
+      }
+    }); 
+  },
+
+  deletecity : function(req, res){
+    City.destroy({id : req.param("id")}, function(err, city){
+      if(err)
+        req.flash("message", "Db Error");
+      else if(city)
+        req.flash("message", "City Deleted");
+      res.redirect('back');
+    });
+  }
+  ,_config: {}
 };
