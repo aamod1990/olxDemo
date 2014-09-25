@@ -2,104 +2,104 @@
 <div class="border-box">
 <div class="profle-box"><a href="javascript:void(0);" id="addCity" class="save-change">Add City</a>
 <div class="profile-detail">
-  <table class="table table-hover">
-      <tr  class="active">
-          <th>Id</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Action</th>
-      </tr>
-    <% for(var i=0; i<cities.length;i++) { %>
-          <tr class="success">
-              <td><%= i+1 %></td>
-              <td><%= cities[i].city %></td>
-              <td><%= cities[i].state[0].state %></td>
-              <td>
-                <span>
-                  <a  class="action" href="javascript:void(0)" onclick="edit('<%=cities[i].city%>', '<%=cities[i].id%>', '<%=cities[i].state[0].state%>', '<%=cities[i].state[0].id%>')">Edit</a>
-                </span>
-                <span><a  class="action" href="/deletecity/<%=cities[i].id%>">Delete</a></span></td>
+<table class="table table-hover">
+<tr class="active">
+<th>Id</th>
+<th>City</th>
+<th>State</th>
+<th>Action</th>
+</tr>
+<% for(var i=0; i<cities.length;i++) { %>
+<tr class="success">
+<td><%= i+1 %></td>
+<td><%= cities[i].city %></td>
+<td><%= cities[i].state[0].state %></td>
+<td>
+<span>
+<a class="action" href="javascript:void(0)" onclick="edit('<%=cities[i].city%>', '<%=cities[i].id%>', '<%=cities[i].state[0].state%>', '<%=cities[i].state[0].id%>')">Edit</a>
+</span>
+<span><a class="action" href="/deletecity/<%=cities[i].id%>">Delete</a></span></td>
 
-          </tr>
-    <% } %>
-  </table>
-   <%- req.flash('message') %>
+</tr>
+<% } %>
+</table>
+<%- req.flash('message') %>
 </div>
 <div class="clear"></div>
 </div>
 </div>
 <div id="createcity_dialog">
- <form action="/createcity" method="post">
-  <fieldset>
-   <span for="name">Enter State</span><br>
-   <select name="state">
-      <option value="">select_state</option>
-      <% for(var i=0; i<states.length;i++) { %>
-      <option value="<%= states[i].id %>"><%= states[i].state %></option>
-      <% } %>
-      </select><br>
-   <span for="name">Enter City</span>
-   <input type="text" name="city"  id="city" class="text ui-widget-content ui-corner-all" required><br>
-   <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">submit</span></button>
-  </fieldset>
- </form>
+<form action="/createcity" method="post">
+<fieldset>
+<span for="name">Enter State</span><br>
+<select name="state">
+<option value="">select_state</option>
+<% for(var i=0; i<states.length;i++) { %>
+<option value="<%= states[i].id %>"><%= states[i].state %></option>
+<% } %>
+</select><br>
+<span for="name">Enter City</span>
+<input type="text" name="city" id="city" class="text ui-widget-content ui-corner-all" required><br>
+<button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">submit</span></button>
+</fieldset>
+</form>
 </div>
 
 
 
 <div id="editstate_dialog">
- <form action ="/editcity" method="post">
-   <fieldset>
-   <span for="name">Enter State</span><br>
-   <input type="text" name="state" id="state" readonly>
-   <br>
-   <span for="name">Enter City</span>
-   <input type="text" name="city"  id="edit_city" class="text ui-widget-content ui-corner-all" required><br>
-    <input type="hidden" name="cityid"  id="cityid"><br>
-    <input type="hidden" name="stateid"  id="stateid"><br>
-   <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">Update</span></button>
-  </fieldset>
- </form>
+<form action ="/editcity" method="post">
+<fieldset>
+<span for="name">Enter State</span><br>
+<input type="text" name="state" id="state" readonly>
+<br>
+<span for="name">Enter City</span>
+<input type="text" name="city" id="edit_city" class="text ui-widget-content ui-corner-all" required><br>
+<input type="hidden" name="cityid" id="cityid"><br>
+<input type="hidden" name="stateid" id="stateid"><br>
+<button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">Update</span></button>
+</fieldset>
+</form>
 </div>
 
 <script>
- $( "#createcity_dialog" ).dialog({
-   autoOpen: false,
-   modal : true,
-   show: {
-   effect: "blind",
-   duration: 1000
-  },
-   hide: {
-   effect: "explode",
-   duration: 1000
-  }
- });
-  $(function() {    
-   $("#addCity").click(function(){
-    $("#createcity_dialog").dialog('open');
-   });   
-  });
+$( "#createcity_dialog" ).dialog({
+autoOpen: false,
+modal : true,
+show: {
+effect: "blind",
+duration: 1000
+},
+hide: {
+effect: "explode",
+duration: 1000
+}
+});
+$(function() {
+$("#addCity").click(function(){
+$("#createcity_dialog").dialog('open');
+});
+});
 </script>
 <script>
 $( "#editstate_dialog" ).dialog({
-   autoOpen: false,
-   modal : true,
-   show: {
-   effect: "blind",
-   duration: 1000
-  },
-   hide: {
-   effect: "explode",
-   duration: 1000
-  }
- });
+autoOpen: false,
+modal : true,
+show: {
+effect: "blind",
+duration: 1000
+},
+hide: {
+effect: "explode",
+duration: 1000
+}
+});
 function edit(city, cityid, state, stateid){
-   $("#editstate_dialog").dialog('open');
-   $("#state").val(state);
-   $("#cityid").val(cityid);
-   $("#edit_city").val(city);
-   $("#stateid").val(stateid);
+$("#editstate_dialog").dialog('open');
+$("#state").val(state);
+$("#cityid").val(cityid);
+$("#edit_city").val(city);
+$("#stateid").val(stateid);
 }
 </script>
 

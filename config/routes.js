@@ -77,6 +77,11 @@ module.exports.routes = {
     controller   : 'city',
     action        : 'deletecity'
   },
+  '/categary' :{
+    controller : 'home',
+    action     : 'categary'
+  },
+
   'post /editcity' : {
     controller : 'city',
     action     : 'editcity'
@@ -109,6 +114,7 @@ module.exports.routes = {
   }
 
   //Location Controller End
+
 
 
   /***************************************************************************

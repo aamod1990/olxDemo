@@ -1,4 +1,5 @@
 module.exports = {
+
   city : function(req ,res){
       City.find().populate('state').exec(function(err, cities){
         console.log(cities);
@@ -6,6 +7,7 @@ module.exports = {
           console.log("-----"+states+"-----");
           res.view({cities : cities, states : states});
         });
+
       });
   },
 

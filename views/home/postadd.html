@@ -1,11 +1,11 @@
 <div class="container">
-  <form action="/savepage" method="post">
+  <form action="/savepage" method="post" enctype="multipart/form-data">
     <div class="border-box">
       <div class="profile-detail">
         <font color="blue"><h4>Post a Free Classified Ad: <h4></font>
         <div class="clear"></div>
-        
-     
+        <input type="file" name="pic" />
+      </div>     
       <p>
         <span>
           Choosen Categary : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select a categary
@@ -39,27 +39,19 @@
             <input type="email" class="form-control" placeholder="email" name="email" value=""required>
             <p>Your Phone No:*</p>
             <input type="text"  name="mobno" class="form-control" placeholder="0XXXXXXXXXX" value="" required>
-            <p>State:*</p> 
-             
-          <select name="state">
-           <option value="">select_state</option>
-            <% for(var i=0; i<allstate.length;i++) { %>
-           <option value ="<%= allstate[i].state %>"> <%= allstate[i].state %></option>
-            <%}%>
-          </select><br>
-         <p>City:*</p>
-
-            <select name="state">
-             <option value="">Corresponds city</option>
-             <% for(var i=0; i<allstate.length;i++) { %>
-             <option value ="<%= allstate[i].state %>"> <%= allstate[i].state %></option>
-             <%}%>
-           </select><br>
-
+            <p>State:*</p>
+            <select name = "state" class="form-control input-sm">
+              <option value=none>Select a state</option>
+              <option value ="aasam" >Aasam</option>
+              <option value ="nagaland" >Nagaland</option>
+              <option value="goa" >Goa</option>
+              <option value=hp>HP</option>
+            </select>
           </div>
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-lg active">Post your Add</button><br>
+     
     </div>
   </form>
 </div>

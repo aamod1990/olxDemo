@@ -1,19 +1,45 @@
 var path = require('path');
-var xlsx = require('node-xlsx');
-var http = require('http-get');
 var fs = require('fs');
 module.exports = {
 
   
-      postadd : function(req ,res){
+      postadd : function(req ,res)
+        {
 
-                return res.view({});
-            },
+              State.find({},function(err,allstate){
+                 if (err)
+                 {
+                  throw err;
+                  console.log(err);
+                 }
+                else
+                {
+      
+                  res.view({allstate : allstate});
+                }
+
+              });
+
+       },
 
 
       savepage : function  (req,res) {
-       console.log("sachjin");
-       console.log(req.body);
+       
+      console.log("sachjin");
+       
+      // req.file('pic').upload(function (err, uploadedFiles) {
+      //   if (err) return res.send(500, err);
+
+      //   console.log(
+      //     {
+      //       message: uploadedFiles.length + ' file(s) uploaded successfully!',
+      //       files: uploadedFiles
+
+      //     }
+
+      //   );
+      // });
+
         var imagepath = req.param('pic');
         var categary = req.param('categary'); 
         var addtitle = req.param('addtitle');
@@ -123,7 +149,41 @@ module.exports = {
         res.redirect('back');
       }  
       })
-  },  
+  },
+
+  location : function(req ,res){
+    var state = req.param('state');
+    var city  = req.param('city');
+    var location = req.param('location');
+    console.log(state+"city:--"+city+"location:-"+location);
+    if (state && city && location){
+      console.log("somethin enter");
+    }
+    else
+    // {
+    //   State.find({},function(err ,state){
+    //     if (err)
+    //     {
+    //      throw err;
+    //      console.log(err);
+    //     }
+    //     else
+    //     {
+    //      var i =-1;
+    //      function next()
+    //      {
+    //       if (true) {};
+    //      }
+    //     }
+    //   });
+    res.view({});
+  },
+
+categary : function(res,res){
+
+  return res.view({});
+},
+
   _config: {}
 };
 
