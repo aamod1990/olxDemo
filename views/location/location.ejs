@@ -1,0 +1,129 @@
+<body>
+<div class="wrapper">
+<div class="border-box">
+<div class="profle-box"><a href="javascript:void(0);" id="addState" class="save-change">New Location</a>
+<div class="profile-detail">
+  <table class="table table-hover">
+  <tr  class="active">
+    <th>Id</th>
+    <th>Location</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Action</th>
+  </tr>
+  <% for(var i=0; i<locations.length; i++) { %>
+
+  <tr class="success">
+    <td><%= (i+1)%></td>
+    <td><%= locations[i].location%></td>
+    <td><%= locations[i].city[0].city%></td>
+    <td><%= locations[i].state[0].state%></td>
+    <td><span><a href="javascript:void(0)" onclick="edit('<%= states[i].state %>','<%= locations[i].location%>','<%= locations[i].id%>','<%= locations[i].city[0].city%>')">Edit</a><a class="action" href="/deletelocation?id=<%=locations[i].id%>">Delete</a></span></td>
+  </tr>
+  <% } %>
+</table>
+<%- req.flash('message') %>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<div id="createstate_dialog">
+ <form action="/createlocation" method="post">
+  <fieldset>
+   <span for="state">Select State</span><br>
+    <select name="state" id="stateid">
+      <option value="">Select_State</option>
+      <% for(var i=0;i<states.length;i++) { %>
+      <option value="<%= states[i].id %>"><%= states[i].state %></option>
+      <% } %>
+   </select> <br>
+   <span for="city">Select City</span><br>
+   <select name="city" id="findcity">
+      <option value=""> -- Select_City -- </option>
+ </select> <br>
+ <span for="name">Enter Location</span>
+   <input type="text" name="location"  id="location" class="text ui-widget-content ui-corner-all"><br>
+   <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">submit</span></button>
+  </fieldset>
+ </form>
+</div>
+
+<div id="editlocation_dialog">
+ <form action="/editlocation" method="post">
+  <fieldset>
+   <span for="state">Select State</span><br>
+     <input type="text" name="editstate" id="editstate" readonly> <br>
+   <span for="city">Select City</span><br>
+    <input type="text" name="editcity" id="editcity" readonly> <br>
+  <span for="name">Enter Location</span>
+   <input type="text" name="editlocation"  id="editlocation" class="text ui-widget-content ui-corner-all">
+    <input type="hidden" name="editlocationid" id="editlocationid">  
+   <br>
+   <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">Update</span></button>
+  </fieldset>
+ </form>
+</div>
+
+<script>
+ $( "#createstate_dialog" ).dialog({
+   autoOpen: false,
+   modal : true,
+   show: {
+   effect: "blind",
+   duration: 1000
+  },
+   hide: {
+   effect: "explode",
+   duration: 1000
+  }
+ });
+
+  $(function() {    
+    $("#addState").click(function(){
+      $("#createstate_dialog").dialog('open');
+    });
+  });
+</script>
+<script>
+$("#stateid").change(function(){
+      $.ajax({
+        type: "POST",
+        url: "/getcity",
+        data: {stateid : $("#stateid").val()},
+        success: function(data){
+          $("#findcity").find('option').remove().end();
+          $("#findcity").append('<option value="">-- Select City --</option>');
+          $.each(data.cities,function(key, value){
+            if(value.state && value.state.length>0){
+              console.log("\n\n",JSON.stringify(value),"\n\n");
+              $("#findcity").append('<option value="'+value.id+'">'+value.city+'</option>');
+            }
+          });
+        },
+      });
+    });
+</script>
+<script>
+ $( "#editlocation_dialog" ).dialog({
+   autoOpen: false,
+   modal : true,
+   show: {
+   effect: "blind",
+   duration: 1000
+  },
+   hide: {
+   effect: "explode",
+   duration: 1000
+  }
+ });
+ function edit(state, location,locationid,city){
+   $("#editlocation_dialog").dialog('open');
+   $("#editstate").val(state);
+   $("#editcity").val(city);
+   $("#editlocation").val(location);
+   $("#editlocationid").val(locationid);
+
+   }
+</script>
+</body>
+

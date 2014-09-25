@@ -123,37 +123,7 @@ module.exports = {
         res.redirect('back');
       }  
       })
-  },
-
-  location : function(req ,res){
-    var state = req.param('state');
-    var city  = req.param('city');
-    var location = req.param('location');
-    console.log(state+"city:--"+city+"location:-"+location);
-    if (state && city && location){
-      console.log("somethin enter");
-    }
-    else
-    // {
-    //   State.find({},function(err ,state){
-    //     if (err)
-    //     {
-    //      throw err;
-    //      console.log(err);
-    //     }
-    //     else
-    //     {
-    //      var i =-1;
-    //      function next()
-    //      {
-    //       if (true) {};
-    //      }
-    //     }
-    //   });
-    res.view({});
-  },
-  
-  
+  },  
   _config: {}
 };
 
