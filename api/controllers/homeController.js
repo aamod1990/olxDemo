@@ -14,11 +14,24 @@ module.exports = {
                  }
                 else
                 {
+
       
                   res.view({allstate : allstate});
                 }
 
               });
+             
+            City.find().populate('state').exec(function(err, cities){
+               State.find({}, function(err, states){
+                res.view({cities : cities, states : states});
+                console.log(states);
+             });
+
+           });  
+
+
+
+
 
        },
 

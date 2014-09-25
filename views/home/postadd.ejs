@@ -41,25 +41,56 @@
             <input type="text"  name="mobno" class="form-control" placeholder="0XXXXXXXXXX" value="" required>
             <p>State:*</p> 
              
-          <select name="state">
-           <option value="">select_state</option>
-            <% for(var i=0; i<allstate.length;i++) { %>
-           <option value ="<%= allstate[i].state %>"> <%= allstate[i].state %></option>
-            <%}%>
-          </select><br>
-         <p>City:*</p>
+            <span for="state">Select State</span><br>
+            <select name="state" id="stateid">
+            <option value="">Select_State</option>
+             <% for(var i=0;i<states.length;i++) { %>
+             <option value="<%= states[i].id %>"><%= states[i].state %></option>
+             <% } %>
+                <p>City:*</p>
 
-            <select name="state">
-             <option value="">Corresponds city</option>
-             <% for(var i=0; i<allstate.length;i++) { %>
-             <option value ="<%= allstate[i].state %>"> <%= allstate[i].state %></option>
-             <%}%>
-           </select><br>
+               <span for="city">Select City</span><br>
+               <select name="city" id="findcity">
+               <option value=""> -- Select_City -- </option>
+               </select> <br>
 
+
+
+
+          
           </div>
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-lg active">Post your Add</button><br>
+    
+
+
+
+
+
     </div>
   </form>
+
+   <script type="text/javascript">
+<script>
+$("#stateid").change(function(){
+$.ajax({
+type: "POST",
+url: "/getcity",
+data: {stateid : $("#stateid").val()},
+success: function(data){
+$("#findcity").find('option').remove().end();
+$("#findcity").append('<option value="">-- Select City --</option>');
+$.each(data.cities,function(key, value){
+if(value.state && value.state.length>0){
+console.log("\n\n",JSON.stringify(value),"\n\n");
+$("#findcity").append('<option value="'+value.id+'">'+value.city+'</option>');
+}
+});
+},
+});
+});
+</script>
+
+
 </div>
