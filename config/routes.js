@@ -49,19 +49,12 @@ module.exports.routes = {
      controller : 'home',
      action     : 'state'
   },
-    
-
-  '/location' :{
-   controller : 'home',
-   action     : 'location'
-  },
-
-
-  '/createstate' :{
+  
+  'post /createstate' :{
     controller : 'home',
     action     : 'createstate'
   },
-  '/editstate' : {
+  'post /editstate' : {
     controller : 'home',
     action      : 'editstate'
   },
@@ -69,6 +62,8 @@ module.exports.routes = {
     controller : 'home',
     action      : 'deletestate'
   },
+
+  //city Controller start.
   '/city' :{
     controller : 'city',
     action      : 'city'
@@ -90,8 +85,35 @@ module.exports.routes = {
   'post /editcity' : {
     controller : 'city',
     action     : 'editcity'
+  },
+//city controller end.
+
+
+//Location Controller Start
+
+'/location' :{
+   controller : 'location',
+   action     : 'location'
+  },
+  'post /getcity' :{
+    controller : 'location',
+    action     : 'getcity'
+  },
+  'post /createlocation' :{
+    controller : 'location',
+    action     : 'createlocation'
+
+  },
+  'post /editlocation' :{
+    controller : 'location',
+    action     :  'editlocation'
+  },
+  '/deletelocation' :{
+    controller : 'location',
+    action     :  'deletelocation'
   }
 
+  //Location Controller End
 
 
 

@@ -197,8 +197,6 @@ categary : function(res,res){
   return res.view({});
 },
 
-  
-  
   _config: {}
 };
 

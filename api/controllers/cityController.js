@@ -2,7 +2,9 @@ module.exports = {
 
   city : function(req ,res){
       City.find().populate('state').exec(function(err, cities){
+        console.log(cities);
         State.find({}, function(err, states){
+          console.log("-----"+states+"-----");
           res.view({cities : cities, states : states});
         });
 
@@ -57,6 +59,6 @@ module.exports = {
         req.flash("message", "City Deleted");
       res.redirect('back');
     });
-  }
-  ,_config: {}
+  },
+  _config: {}
 };
